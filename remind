@@ -12,11 +12,6 @@ for prog in cat getopt rm sed; do
 done
 
 # functions
-delall() {
-  read -p "Delete all reminders? [Y/n]: " answer
-  [[ ${answer,,} =~ ^\s*n ]] || rm -f $reminderFile
-}
-
 delitem() {
   if [[ "$1" =~ ^[0-9]+$ ]]; then
 # numeric value, delete item number
@@ -44,7 +39,7 @@ while [[ $1 != '--' ]]; do
       exit 0
       ;;
     -D)
-      delall
+      rm -f $reminderFile
       exit 0
       ;;
     -h|--help)
